@@ -20,14 +20,22 @@ body {
   list-style: none;
 }
 .listItem {
+  text-decoration: none;
   padding: 10px;
   margin: 10px;
+  color: black;
+}
+.listItem:hover {
+  border-radius: 30px;
+  background-color: rgb(159, 174, 175);
+  color: black;
 }
 .resCard {
   padding: 5px;
   margin: 5px;
   background-color: #ffbbbb;
   width: 230px;
+  height: 600px;
 }
 .resCard:hover {
   border: 1px solid black;
@@ -37,8 +45,6 @@ body {
   height: 50%;
 }
 
-
-
 .searchBarContainer {
   display: flex;
   height: 100px;
@@ -47,7 +53,7 @@ body {
   padding: 20px;
   margin: 20px;
 }
-.filter-btn{
+.filter-btn {
   text-align: center;
   font-size: 20px;
   background-color: aquamarine;
@@ -67,4 +73,25 @@ body {
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
+}
+.Green {
+  background-color: green;
+}
+.Red {
+  background-color: red;
+}
+.shimmer-container {
+  margin-top: -80px;
+  padding: 100px;
+}
+.login {
+  padding: 0 20px;
+  cursor: pointer;
+  height: 40px;
+  margin-top: 15px;
+}
+
+.resMenu-Logo{
+  width: 200px;
+  height: 200px;
 }

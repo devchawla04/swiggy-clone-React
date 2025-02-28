@@ -1,14 +1,8 @@
 const RestrauntCard = (props) => {
   const { resData } = props;
 
-  const {
-    cloudinaryImageId,
-    name,
-    cuisines,
-    avgRating,
-    costForTwoString,
-    deliveryTime,
-  } = resData?.data;
+  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } =
+    resData?.info;
 
   return (
     <>
@@ -23,9 +17,11 @@ const RestrauntCard = (props) => {
         />
         <h3>{name}</h3>
         <h4>{cuisines.join(", ")}</h4>
-        <h4>{avgRating + " ⭐"}</h4>
-        <h4>{costForTwoString} </h4>
-        <h4>{deliveryTime} Minutes</h4>
+        <span className={avgRating >= 4.5 ? "Green" : "Red"}>
+          {avgRating + " ⭐"}
+        </span>
+        <h4>{costForTwo} </h4>
+        <h4>Delivery Time:- {resData?.info?.sla?.slaString}</h4>
       </div>
     </>
   );
