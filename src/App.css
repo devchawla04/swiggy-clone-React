@@ -76,9 +76,12 @@ body {
 }
 .Green {
   background-color: green;
+  height: 70%;
+  margin: auto 5px;
 }
 .Red {
   background-color: red;
+  height: 70%;
 }
 .shimmer-container {
   margin-top: -80px;
@@ -92,6 +95,48 @@ body {
 }
 
 .resMenu-Logo{
-  width: 200px;
+  width: 250px;
   height: 200px;
+  margin: auto 5px;
+}
+
+.res-menu-dish{
+  width: 100px;
+  height: 100px;
+}
+
+.ParentMenu{
+  width: 60%;
+  margin: auto;
+}
+.imgMenuBox{
+  display: flex;
+}
+.imgMenuTextBox{
+  width: 40%;
+}
+
+.LabelBox{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.resDishBox{
+  border-bottom: 1px solid grey;
+  display: flex;
+  justify-content: space-between;
+}
+.PriceBox{
+  padding: 30px;
+}
+.dishImagebox{
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.add-btn{
+  margin: 5px 5px 5px 0px;;
+  width: 60%;
+  height: 30px;
 }
