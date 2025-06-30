@@ -1,4 +1,7 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useCart } from "../Utils/CartContext";
+import appLogo from "../assets/appLogo.jpeg";
 import {
   Popover,
   PopoverButton,
@@ -6,34 +9,18 @@ import {
   PopoverPanel,
 } from "@headlessui/react";
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  BookmarkSquareIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  CursorArrowRaysIcon,
-  LifebuoyIcon,
-  PhoneIcon,
-  PlayIcon,
-  ShieldCheckIcon,
-  Squares2X2Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import appLogo from "../assets/appLogo.jpeg";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 
-export default function Navbar() {
-  const { cart } = useCart(); // Get cart state
-  const totalItems = cart.length; // Count total items
+const Navbar = () => {
+  const { cart } = useCart();
+  const totalItems = cart.length;
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Check if user is stored in localStorage (simulating login state)
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser)); // Parse stored user object
-    }
+    if (storedUser) setUser(JSON.parse(storedUser));
   }, []);
 
   const handleLogout = () => {
@@ -59,37 +46,15 @@ export default function Navbar() {
             </PopoverButton>
           </div>
           <PopoverGroup as="nav" className="hidden space-x-10 md:flex">
-            <Link
-              to="/"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              About Us
-            </Link>
-            <Link
-              to="/contact"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Contact Us
-            </Link>
-            <Link
-              to="/cart"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              🛒 Cart ({totalItems})
-            </Link>
+            <Link to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">Home</Link>
+            <Link to="/about" className="text-base font-medium text-gray-500 hover:text-gray-900">About Us</Link>
+            <Link to="/contact" className="text-base font-medium text-gray-500 hover:text-gray-900">Contact Us</Link>
+            <Link to="/cart" className="text-base font-medium text-gray-500 hover:text-gray-900">🛒 Cart ({totalItems})</Link>
           </PopoverGroup>
           <div className="flex items-center">
             {user ? (
               <>
-                <span className="text-gray-600 font-medium">
-                  Welcome, {user.name}
-                </span>
+                <span className="text-gray-600 font-medium">Welcome, {user.name}</span>
                 <button
                   onClick={handleLogout}
                   className="ml-4 text-base font-medium text-white bg-red-500 hover:bg-red-700 px-4 py-2 rounded"
@@ -98,17 +63,11 @@ export default function Navbar() {
                 </button>
               </>
             ) : (
-              <Link
-                to="/LogIn"
-                className="text-base font-medium text-gray-500 hover:text-gray-900"
-              >
-                Log in
-              </Link>
+              <Link to="/LogIn" className="text-base font-medium text-gray-500 hover:text-gray-900">Log in</Link>
             )}
           </div>
         </div>
       </div>
-
       <PopoverPanel
         transition
         className="z-40 absolute inset-x-0 top-0 origin-top-right transform p-2 transition data-closed:scale-95 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-100 data-leave:ease-in md:hidden"
@@ -131,38 +90,15 @@ export default function Navbar() {
           </div>
           <div className="space-y-6 px-5 py-6">
             <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-              <Link
-                to="/"
-                className="text-base font-medium text-gray-900 hover:text-gray-700"
-              >
-                Home
-              </Link>
-
-              <Link
-                to="/about"
-                className="text-base font-medium text-gray-900 hover:text-gray-700"
-              >
-                About Us
-              </Link>
-              <Link
-                to="/contact"
-                className="text-base font-medium text-gray-900 hover:text-gray-700"
-              >
-                Contact Us
-              </Link>
-              <Link
-                to="/cart"
-                className="text-base font-medium text-gray-900 hover:text-gray-700"
-              >
-                🛒 Cart ({totalItems})
-              </Link>
+              <Link to="/" className="text-base font-medium text-gray-900 hover:text-gray-700">Home</Link>
+              <Link to="/about" className="text-base font-medium text-gray-900 hover:text-gray-700">About Us</Link>
+              <Link to="/contact" className="text-base font-medium text-gray-900 hover:text-gray-700">Contact Us</Link>
+              <Link to="/cart" className="text-base font-medium text-gray-900 hover:text-gray-700">🛒 Cart ({totalItems})</Link>
             </div>
             <div className="flex items-center">
               {user ? (
                 <>
-                  <span className="text-gray-600 font-medium">
-                    Welcome, {user.name}
-                  </span>
+                  <span className="text-gray-600 font-medium">Welcome, {user.name}</span>
                   <button
                     onClick={handleLogout}
                     className="ml-4 text-base font-medium text-white bg-red-500 hover:bg-red-700 px-4 py-2 rounded"
@@ -171,12 +107,7 @@ export default function Navbar() {
                   </button>
                 </>
               ) : (
-                <Link
-                  to="/LogIn"
-                  className="text-base font-medium text-gray-500 hover:text-gray-900"
-                >
-                  Log in
-                </Link>
+                <Link to="/LogIn" className="text-base font-medium text-gray-500 hover:text-gray-900">Log in</Link>
               )}
             </div>
           </div>
@@ -184,4 +115,6 @@ export default function Navbar() {
       </PopoverPanel>
     </Popover>
   );
-}
+};
+
+export default Navbar;

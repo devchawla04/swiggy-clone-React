@@ -7,7 +7,7 @@ import ShimmerRestaurantMenu from "./ShimmerRestaurantMenu";
 const RestaurantMenu = () => {
   const { resid } = useParams();
 
-  const [resmenu, SetresMenu] = useState([]);
+  const [resmenu, SetresMenu] = useState({});
   const [resDishes, SetresDishes] = useState([]);
   const [resDishes2, SetresDishes2] = useState([]);
   const { addToCart } = useCart();
@@ -19,28 +19,25 @@ const RestaurantMenu = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      `https://food-ordering-server-wq4a.onrender.com/api/menu?page-type=REGULAR_MENU&complete-menu=true&lat=12.956924&lng=77.701127&restaurantId=514729&catalog_qa=undefined&query=Biryani&submitAction=ENTER`
+      `https://food-ordering-server-wq4a.onrender.com/api/menu?page-type=REGULAR_MENU&complete-menu=true&lat=12.956924&lng=77.701127&restaurantId=${resid}&catalog_qa=undefined&query=Biryani&submitAction=ENTER`
     );
 
     const jsonData = await data.json();
-
     const restaurantData = jsonData?.data?.cards[2]?.card?.card?.info;
     const resDishes =
-      jsonData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]
+      jsonData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]
         ?.card?.card;
 
     const resDishes2 =
-      jsonData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]
+      jsonData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]
         ?.card?.card;
 
     SetresMenu(restaurantData);
     SetresDishes(resDishes);
     SetresDishes2(resDishes2);
   };
-  // console.log(resmenu);
-  // console.log(resDishes);
 
-  if (resmenu.length === 0) {
+  if (!resmenu || Object.keys(resmenu).length === 0) {
     return (
       <>
         <Navbar />
@@ -117,11 +114,14 @@ const RestaurantMenu = () => {
                       alt={dish?.card?.info?.name}
                     />
                     <button
-                      className={`px-4 py-1 text-white rounded-lg ${
-                        clickedItem === dish?.card?.info?.id
-                          ? "bg-green-500"
-                          : "bg-blue-500 hover:bg-blue-600"
-                      }`}
+                      className={`px-5 py-2 mt-2 text-base font-semibold rounded-lg shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center justify-center gap-2
+                        ${
+                          clickedItem === dish?.card?.info?.id
+                            ? "bg-green-500 text-white"
+                            : "bg-blue-500 text-white hover:bg-blue-600 active:scale-95"
+                        }
+                      `}
+                      style={{ minWidth: '100px' }}
                       onClick={() => {
                         const cartItem = {
                           id: dish?.card?.info?.id,
@@ -138,9 +138,17 @@ const RestaurantMenu = () => {
                         setTimeout(() => setClickedItem(null), 1000); // Reset color after 1s
                       }}
                     >
-                      {clickedItem === dish?.card?.info?.id
-                        ? "Added ✔"
-                        : "Add +"}
+                      {clickedItem === dish?.card?.info?.id ? (
+                        <>
+                          <span className="inline-block align-middle">Added</span>
+                          <svg className="w-5 h-5 ml-1 inline-block align-middle" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                        </>
+                      ) : (
+                        <>
+                          <span className="inline-block align-middle">Add</span>
+                          <span className="text-lg font-bold ml-1 align-middle">+</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
@@ -171,11 +179,14 @@ const RestaurantMenu = () => {
                       alt={dish?.card?.info?.name}
                     />
                     <button
-                      className={`px-4 py-1 text-white rounded-lg ${
-                        clickedItem === dish?.card?.info?.id
-                          ? "bg-green-500"
-                          : "bg-blue-500 hover:bg-blue-600"
-                      }`}
+                      className={`px-5 py-2 mt-2 text-base font-semibold rounded-lg shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 flex items-center justify-center gap-2
+                        ${
+                          clickedItem === dish?.card?.info?.id
+                            ? "bg-green-500 text-white"
+                            : "bg-blue-500 text-white hover:bg-blue-600 active:scale-95"
+                        }
+                      `}
+                      style={{ minWidth: '100px' }}
                       onClick={() => {
                         const cartItem = {
                           id: dish?.card?.info?.id,
@@ -192,9 +203,17 @@ const RestaurantMenu = () => {
                         setTimeout(() => setClickedItem(null), 1000); // Reset color after 1s
                       }}
                     >
-                      {clickedItem === dish?.card?.info?.id
-                        ? "Added ✔"
-                        : "Add +"}
+                      {clickedItem === dish?.card?.info?.id ? (
+                        <>
+                          <span className="inline-block align-middle">Added</span>
+                          <svg className="w-5 h-5 ml-1 inline-block align-middle" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                        </>
+                      ) : (
+                        <>
+                          <span className="inline-block align-middle">Add</span>
+                          <span className="text-lg font-bold ml-1 align-middle">+</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>

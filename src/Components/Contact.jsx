@@ -1,12 +1,12 @@
 import { useState } from "react";
+import Navbar from "./Navbar";
 import {
   BuildingOffice2Icon,
   EnvelopeIcon,
   PhoneIcon,
 } from "@heroicons/react/24/outline";
-import Navbar from "./Navbar";
 
-export default function Contact() {
+const Contact = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -18,7 +18,7 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
   const validate = () => {
-    let newErrors = {};
+    const newErrors = {};
     if (!formData.firstName) newErrors.firstName = "First name is required";
     if (!formData.lastName) newErrors.lastName = "Last name is required";
     if (!formData.email) {
@@ -32,7 +32,6 @@ export default function Contact() {
       newErrors.phone = "Phone number must be 10 digits";
     }
     if (!formData.message) newErrors.message = "Message cannot be empty";
-    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -43,9 +42,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validate()) {
-      setSubmitted(true);
-    }
+    if (validate()) setSubmitted(true);
   };
 
   return (
@@ -58,9 +55,7 @@ export default function Contact() {
               <h2 className="text-4xl font-semibold text-gray-900 sm:text-5xl">
                 Get in touch
               </h2>
-              <p className="mt-6 text-lg text-gray-600">
-                We'd love to hear from you. Fill out the form and we'll respond shortly.
-              </p>
+              <p className="mt-6 text-lg text-gray-600">We&apos;d love to hear from you. Fill out the form and we&apos;ll respond shortly.</p>
               <dl className="mt-10 space-y-4 text-gray-600">
                 <div className="flex gap-x-4">
                   <BuildingOffice2Icon className="h-7 w-6 text-gray-400" />
@@ -135,4 +130,6 @@ export default function Contact() {
       </div>
     </>
   );
-}
+};
+
+export default Contact;
