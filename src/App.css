@@ -53,6 +53,24 @@ body {
   padding: 20px;
   margin: 20px;
 }
+
+@media (max-width: 640px) {
+  .searchBarContainer {
+    flex-direction: column;
+    height: auto;
+    gap: 12px;
+    padding: 10px;
+    margin: 10px;
+    align-items: stretch;
+  }
+  .searchBarContainer button,
+  .searchBarContainer input {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+}
+
 .filter-btn {
   text-align: center;
   font-size: 20px;
